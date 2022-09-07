@@ -33,3 +33,10 @@ npm-debug.log
 /assets/node_modules/
 
 .DS_Store
+
+
+# Ignore Deploy
+Dockerfile
+fly.toml
+rel/overlays/bin/server
+rel/overlays/bin/server.bat
