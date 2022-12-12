@@ -1,4 +1,6 @@
-# Thumb
+# Thumber
+
+Small, distributed elixir HTTPS microservice for image manipulation processing.
 
 TODO:
 - enforce https
