@@ -1,5 +1,5 @@
-defmodule ThumbWeb.ErrorView do
-  use ThumbWeb, :view
+defmodule ThumberWeb.ErrorView do
+  use ThumberWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

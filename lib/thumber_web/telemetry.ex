@@ -1,4 +1,4 @@
-defmodule ThumbWeb.Telemetry do
+defmodule ThumberWeb.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -42,7 +42,7 @@ defmodule ThumbWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {ThumbWeb, :count_users, []}
+      # {ThumberWeb, :count_users, []}
     ]
   end
 end

@@ -1,6 +1,6 @@
-defmodule Thumb do
+defmodule Thumber do
   @moduledoc """
-  Thumb keeps the contexts that define your domain
+  Thumber keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

@@ -1,5 +1,5 @@
-defmodule ThumbWeb.PageControllerTest do
-  use ThumbWeb.ConnCase
+defmodule ThumberWeb.PageControllerTest do
+  use ThumberWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")

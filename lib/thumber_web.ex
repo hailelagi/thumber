@@ -1,12 +1,12 @@
-defmodule ThumbWeb do
+defmodule ThumberWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use ThumbWeb, :controller
-      use ThumbWeb, :view
+      use ThumberWeb, :controller
+      use ThumberWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,19 +19,18 @@ defmodule ThumbWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: ThumbWeb
+      use Phoenix.Controller, namespace: ThumberWeb
 
       import Plug.Conn
-      import ThumbWeb.Gettext
-      alias ThumbWeb.Router.Helpers, as: Routes
+      alias ThumberWeb.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/thumb_web/templates",
-        namespace: ThumbWeb
+        root: "lib/thumber_web/templates",
+        namespace: ThumberWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -45,7 +44,7 @@ defmodule ThumbWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {ThumbWeb.LayoutView, "live.html"}
+        layout: {ThumberWeb.LayoutView, "live.html"}
 
       unquote(view_helpers())
     end
@@ -80,7 +79,6 @@ defmodule ThumbWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import ThumbWeb.Gettext
     end
   end
 
@@ -95,9 +93,8 @@ defmodule ThumbWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import ThumbWeb.ErrorHelpers
-      import ThumbWeb.Gettext
-      alias ThumbWeb.Router.Helpers, as: Routes
+      import ThumberWeb.ErrorHelpers
+      alias ThumberWeb.Router.Helpers, as: Routes
     end
   end
 

@@ -1,5 +1,5 @@
-defmodule ThumbWeb.PageController do
-  use ThumbWeb, :controller
+defmodule ThumberWeb.PageController do
+  use ThumberWeb, :controller
 
   def index(conn, _params) do
     render(conn, "index.html")

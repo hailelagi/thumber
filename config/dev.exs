@@ -6,14 +6,14 @@ import Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with esbuild to bundle .js and .css sources.
-config :thumb, ThumbWeb.Endpoint,
+config :thumber, ThumberWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "KurapydCd4j9h7bm5EaeuAK6l93WKJllq0F6uqpMViHXMie4j/jEd/aYstMA1GXa",
+  secret_key_base: "nILVEWxnQxu50kg5ITUodyfbLNZSTWTSSNeLA0OUxpVMwDEhnsvavpPcu9rFcBQH",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
@@ -44,13 +44,12 @@ config :thumb, ThumbWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :thumb, ThumbWeb.Endpoint,
+config :thumber, ThumberWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
-      ~r"lib/thumb_web/(live|views)/.*(ex)$",
-      ~r"lib/thumb_web/templates/.*(eex)$"
+      ~r"lib/thumber_web/(live|views)/.*(ex)$",
+      ~r"lib/thumber_web/templates/.*(eex)$"
     ]
   ]
 

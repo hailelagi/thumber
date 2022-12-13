@@ -1,11 +1,11 @@
-defmodule ThumbWeb.Router do
-  use ThumbWeb, :router
+defmodule ThumberWeb.Router do
+  use ThumberWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {ThumbWeb.LayoutView, :root}
+    plug :put_root_layout, {ThumberWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -14,14 +14,14 @@ defmodule ThumbWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", ThumbWeb do
+  scope "/", ThumberWeb do
     pipe_through :browser
 
     get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ThumbWeb do
+  # scope "/api", ThumberWeb do
   #   pipe_through :api
   # end
 
@@ -38,7 +38,7 @@ defmodule ThumbWeb.Router do
     scope "/" do
       pipe_through :browser
 
-      live_dashboard "/dashboard", metrics: ThumbWeb.Telemetry
+      live_dashboard "/dashboard", metrics: ThumberWeb.Telemetry
     end
   end
 end

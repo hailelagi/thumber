@@ -1,5 +1,5 @@
-defmodule ThumbWeb.LayoutViewTest do
-  use ThumbWeb.ConnCase, async: true
+defmodule ThumberWeb.LayoutViewTest do
+  use ThumberWeb.ConnCase, async: true
 
   # When testing helpers, you may want to import Phoenix.HTML and
   # use functions such as safe_to_string() to convert the helper

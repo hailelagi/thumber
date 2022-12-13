@@ -1,4 +1,4 @@
-defmodule Thumb.Application do
+defmodule Thumber.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -9,18 +9,18 @@ defmodule Thumb.Application do
   def start(_type, _args) do
     children = [
       # Start the Telemetry supervisor
-      ThumbWeb.Telemetry,
+      ThumberWeb.Telemetry,
       # Start the PubSub system
-      {Phoenix.PubSub, name: Thumb.PubSub},
+      {Phoenix.PubSub, name: Thumber.PubSub},
       # Start the Endpoint (http/https)
-      ThumbWeb.Endpoint
-      # Start a worker by calling: Thumb.Worker.start_link(arg)
-      # {Thumb.Worker, arg}
+      ThumberWeb.Endpoint
+      # Start a worker by calling: Thumber.Worker.start_link(arg)
+      # {Thumber.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Thumb.Supervisor]
+    opts = [strategy: :one_for_one, name: Thumber.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
@@ -28,7 +28,7 @@ defmodule Thumb.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    ThumbWeb.Endpoint.config_change(changed, removed)
+    ThumberWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

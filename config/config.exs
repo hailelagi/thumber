@@ -8,11 +8,11 @@
 import Config
 
 # Configures the endpoint
-config :thumb, ThumbWeb.Endpoint,
+config :thumber, ThumberWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: ThumbWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Thumb.PubSub,
-  live_view: [signing_salt: "1dmvHhm8"]
+  render_errors: [view: ThumberWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Thumber.PubSub,
+  live_view: [signing_salt: "gzUrpngV"]
 
 # Configure esbuild (the version is required)
 config :esbuild,

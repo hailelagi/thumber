@@ -20,7 +20,7 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-thumb-*.tar
+thumber-*.tar
 
 # Ignore assets that are produced by build tools.
 /priv/static/assets/
@@ -32,11 +32,3 @@ thumb-*.tar
 npm-debug.log
 /assets/node_modules/
 
-.DS_Store
-
-
-# Ignore Deploy
-Dockerfile
-fly.toml
-rel/overlays/bin/server
-rel/overlays/bin/server.bat

@@ -1,13 +1,13 @@
-defmodule ThumbWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :thumb
+defmodule ThumberWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :thumber
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_thumb_key",
-    signing_salt: "sL/v/4Mv"
+    key: "_thumber_key",
+    signing_salt: "vhvoanwq"
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
@@ -18,7 +18,7 @@ defmodule ThumbWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :thumb,
+    from: :thumber,
     gzip: false,
     only: ~w(assets fonts images favicon.ico robots.txt)
 
@@ -45,5 +45,5 @@ defmodule ThumbWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug ThumbWeb.Router
+  plug ThumberWeb.Router
 end
