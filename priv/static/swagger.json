@@ -1,0 +1,11 @@
+{
+  "definitions": {},
+  "host": "localhost:4000",
+  "info": {
+    "basePath": "/api",
+    "title": "Thumber - Image Service",
+    "version": "1.0"
+  },
+  "paths": {},
+  "swagger": "2.0"
+}
