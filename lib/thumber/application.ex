@@ -10,6 +10,8 @@ defmodule Thumber.Application do
     children = [
       # Start the Telemetry supervisor
       ThumberWeb.Telemetry,
+      # Start the Ecto repository
+      Thumber.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: Thumber.PubSub},
       # Start the Endpoint (http/https)

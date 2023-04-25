@@ -7,20 +7,23 @@ import Config
 # any compile-time configuration in here, as it won't be applied.
 # The block below contains prod specific runtime configuration.
 
-# ## Using releases
-#
-# If you use `mix release`, you need to explicitly enable the server
-# by passing the PHX_SERVER=true when you start it:
-#
-#     PHX_SERVER=true bin/thumber start
-#
-# Alternatively, you can use `mix phx.gen.release` to generate a `bin/server`
-# script that automatically sets the env var above.
-if System.get_env("PHX_SERVER") do
+# Start the phoenix server if environment is set and running in a release
+if System.get_env("PHX_SERVER") && System.get_env("RELEASE_NAME") do
   config :thumber, ThumberWeb.Endpoint, server: true
 end
 
 if config_env() == :prod do
+  database_path =
+    System.get_env("DATABASE_PATH") ||
+      raise """
+      environment variable DATABASE_PATH is missing.
+      For example: /etc/thumber/thumber.db
+      """
+
+  config :thumber, Thumber.Repo,
+    database: database_path,
+    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "5")
+
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
   # want to use a different value for prod and you most likely don't want
@@ -37,7 +40,7 @@ if config_env() == :prod do
   port = String.to_integer(System.get_env("PORT") || "4000")
 
   config :thumber, ThumberWeb.Endpoint,
-    url: [host: host, port: 443, scheme: "https"],
+    url: [host: host, port: 443],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
@@ -47,4 +50,14 @@ if config_env() == :prod do
       port: port
     ],
     secret_key_base: secret_key_base
+
+  # ## Using releases
+  #
+  # If you are doing OTP releases, you need to instruct Phoenix
+  # to start each relevant endpoint:
+  #
+  #     config :thumber, ThumberWeb.Endpoint, server: true
+  #
+  # Then you can assemble a release by calling `mix release`.
+  # See `mix help release` for more information.
 end

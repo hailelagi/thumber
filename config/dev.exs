@@ -1,5 +1,11 @@
 import Config
 
+# Configure your database
+config :thumber, Thumber.Repo,
+  database: Path.expand("../thumber_dev.db", Path.dirname(__ENV__.file)),
+  pool_size: 5,
+  show_sensitive_data_on_connection_error: true
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -13,7 +19,7 @@ config :thumber, ThumberWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "nILVEWxnQxu50kg5ITUodyfbLNZSTWTSSNeLA0OUxpVMwDEhnsvavpPcu9rFcBQH",
+  secret_key_base: "5mtWqFyaNxCZNTZK83tAQOBdwIo1xJDzmOQMV6JdxQ673BfCxa2yxyl5cV763yoW",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}

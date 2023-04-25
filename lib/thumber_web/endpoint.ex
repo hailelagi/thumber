@@ -7,7 +7,8 @@ defmodule ThumberWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_thumber_key",
-    signing_salt: "vhvoanwq"
+    signing_salt: "PyHDWjR5",
+    same_site: "Lax"
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
@@ -20,7 +21,7 @@ defmodule ThumberWeb.Endpoint do
     at: "/",
     from: :thumber,
     gzip: false,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    only: ThumberWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -28,6 +29,7 @@ defmodule ThumberWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :thumber
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
