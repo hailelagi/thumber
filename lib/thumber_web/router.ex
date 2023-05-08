@@ -1,4 +1,5 @@
 defmodule ThumberWeb.Router do
+  alias ThumberWeb.PageController
   use ThumberWeb, :router
 
   pipeline :browser do
@@ -7,7 +8,7 @@ defmodule ThumberWeb.Router do
     plug :fetch_live_flash
     plug :put_root_layout, {ThumberWeb.LayoutView, :root}
     plug :protect_from_forgery
-    plug :put_secure_browser_headers, %{"cross-origin-policy" => "default-src 'self';"}
+    plug :put_secure_browser_headers, %{"cross-origin-policy" => "default-src 'self'"}
   end
 
   pipeline :api do
@@ -15,19 +16,31 @@ defmodule ThumberWeb.Router do
     plug Ueberauth
   end
 
+  scope "/" do
+    pipe_through :browser
+
+    get "/", PageController, :index
+  end
+
   scope "/auth", ThumberWeb do
     pipe_through :browser
 
-    get "/:provider", AuthController, :request
-    get "/:provider/callback", AuthController, :callback
-
-    get "/", PageController, :index
+    get "/github", AuthController, :request
+    get "/github/callback", AuthController, :callback
   end
 
   scope "/api", ThumberWeb do
     pipe_through :api
 
-    get "/", PageController, :index
+    post "/resize", ImageController, :resize
+    post "/enlarge", ImageController, :enlarge
+    post "/crop", ImageController, :crop
+    post "/rotate", ImageController, :rotate
+    post "/thumbnail", ImageController, :thumbnail
+  end
+
+  scope "/api/swagger" do
+    forward "/", PhoenixSwagger.Plug.SwaggerUI, otp_app: :thumber, swagger_file: "swagger.json"
   end
 
   def swagger_info do
@@ -40,13 +53,7 @@ defmodule ThumberWeb.Router do
     }
   end
 
-  # Enable LiveDashboard in development
   if Application.compile_env(:thumber, :dev_routes) do
-    # If you want to use the LiveDashboard in production, you should put
-    # it behind authentication and allow only admins to access it.
-    # If your application does not have an admins-only section yet,
-    # you can use Plug.BasicAuth to set up some basic authentication
-    # as long as you are also using SSL (which you should anyway).
     import Phoenix.LiveDashboard.Router
 
     scope "/dev" do

@@ -1,9 +1,7 @@
 defmodule ThumberWeb.PageController do
   use ThumberWeb, :controller
 
-  def home(conn, _params) do
-    # The home page is often custom made,
-    # so skip the default app layout.
-    render(conn, :home, layout: false)
+  def index(conn, _params) do
+    redirect(conn, to: "/api/swagger")
   end
 end
