@@ -10,7 +10,10 @@ defmodule Thumber.Application do
       Thumber.Repo,
       {Phoenix.PubSub, name: Thumber.PubSub},
       ThumberWeb.Endpoint,
-      Thumber.Vault
+      Thumber.Vault,
+      {Registry, keys: :unique, name: Thumber.VaultRegistry},
+      {DynamicSupervisor, name: Thumber.VaultSupervisor, strategy: :one_for_one},
+      Thumber.User.ScheduleDeletion
     ]
 
     opts = [strategy: :one_for_one, name: Thumber.Supervisor]

@@ -27,6 +27,7 @@ defmodule ThumberWeb.Router do
 
     get "/github", AuthController, :request
     get "/github/callback", AuthController, :callback
+    get "/github/callback/sovereign", AuthController, :callback_sovereign
   end
 
   scope "/api", ThumberWeb do

@@ -1,5 +1,5 @@
 defmodule Thumber.Vault do
-  use Cloak.Vault, otp_app: :my_app
+  use Cloak.Vault, otp_app: :thumber
 
   @impl GenServer
   def init(config) do
@@ -14,12 +14,9 @@ defmodule Thumber.Vault do
     {:ok, config}
   end
 
-  defp decode_env!(_var) do
-    32 |> :crypto.strong_rand_bytes()
+  defp decode_env!(var) do
+    var
+    |> System.get_env()
+    |> Base.decode64!()
   end
-
-  # TODO: Do not lose decryption key
-  # var
-    # |> System.get_env()
-    # |> Base.decode64!()
 end

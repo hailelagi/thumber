@@ -40,3 +40,14 @@ npm-debug.log
 *.db-*
 
 /assets/vendor
+
+# Local test secrets
+.envrc
+
+# Local dev quality of life alias utils
+.iex.exs
+
+.DS_Store
+
+# Ignore database dump
+./export.sql

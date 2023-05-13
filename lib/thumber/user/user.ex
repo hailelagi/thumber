@@ -8,8 +8,9 @@ defmodule Thumber.User do
 
   schema "users" do
     field :email, Thumber.Encrypted.Binary
-    field :provider, :string
     field :token,  Thumber.Encrypted.Binary
+    field :provider, :string, default: "github"
+    field :schedule_delete, :boolean, default: false
 
     timestamps()
   end
@@ -17,8 +18,8 @@ defmodule Thumber.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :provider, :token])
-    |> validate_required([:email, :provider, :token])
+    |> cast(attrs, [:email, :token])
+    |> validate_required([:email, :token])
     |> unique_constraint(:email)
   end
 end
