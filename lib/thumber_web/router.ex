@@ -11,6 +11,11 @@ defmodule ThumberWeb.Router do
     plug :put_secure_browser_headers, %{"cross-origin-policy" => "default-src 'self'"}
   end
 
+  pipeline :grafana do
+    plug Ueberauth
+    # todo rate limit and other guards
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
     plug Ueberauth
@@ -18,6 +23,12 @@ defmodule ThumberWeb.Router do
 
   scope "/" do
     pipe_through :browser
+
+    get "/", PageController, :index
+  end
+
+  scope "/dashboard" do
+    pipe_through [:browser, :grafana]
 
     get "/", PageController, :index
   end

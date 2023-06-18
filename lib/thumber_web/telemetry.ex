@@ -6,6 +6,9 @@ defmodule ThumberWeb.Telemetry do
     Supervisor.start_link(__MODULE__, arg, name: __MODULE__)
   end
 
+  # TODO:
+  # ADD GRAFANA/PROMETHUS DASHBOARD
+
   @impl true
   def init(_arg) do
     children = [
